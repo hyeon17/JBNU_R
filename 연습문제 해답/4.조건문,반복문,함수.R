@@ -109,7 +109,7 @@ result
 result <- lgm(10, 20)
 result
 
-10.
+#10.
 maxmin <- function(v){
   rst <- list(max = 0, min = 0)
   if (length(v) == 0) {
