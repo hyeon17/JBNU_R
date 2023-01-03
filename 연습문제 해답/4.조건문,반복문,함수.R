@@ -1,32 +1,47 @@
 #01.
-#(1)
-sum(c(1:100)[1:100 %% 3 == 0])
+#(1)1~100사이의 정ㅅ중 3의 배수들의 합과 개수
+sum.val <- 0
+nums.val <- 0
+for(i in 1:100){
+  if(i%%3==0){
+    sum.val <- sum.val+i
+    nums.val <- nums.val+1
+  }
+}
+sum.val
+nums.val
 
-#(2)
+#(2)101~200사이의 숫자 중 3과 4의 공배수
+a <- 0
 c(1:100)[1:100 %% 3 == 0 & 1:100 %% 4 == 0]
-
-#(3)
-for (n in 1:24) {
-  if(24 %% n == 0){
-    cat(n, " ", sep = "")
+for(i in 101:200){
+  if(i%% 3 == 0 & i%%4==0){
+    print(i)
   }
 }
 
-#(4)
+#(3) 24의 약수 출력
+for (n in 1:24) {
+  if(24 %% n == 0){
+    print(n)
+  }
+}
+
+#(4) 10!을 출력
 n <- 1
 for (i in 2:10) {
   n <- n*i
 }
 
-cat(n, " ", sep = "")
+print(n)
 
-#02.
+#02. 9단 출력
 for (i in 1:9) {
   cat(9, "x", i, "=", 9*i, sep = " ")
   cat("\n")
 }
 
-#03.
+#03.8단 출력
 i <- 1
 while (i <= 9) {
   cat(8, "x", i, "=", 8*i, sep = " ")
@@ -34,7 +49,7 @@ while (i <= 9) {
   i <- i + 1
 }
 
-#04.
+#04.3의 배수에는 숫자대신 *을 출력
 for (i in 1:100) {
   if(i %% 3 == 0){
     cat("*", " ", sep = "")
@@ -43,7 +58,7 @@ for (i in 1:100) {
     cat(i, " ", sep = "")
   }
 }
-#05.
+#05. 소수 출력
 isPrime <- function(x){
   if(x == 2){
     return(TRUE)
@@ -72,25 +87,8 @@ for(i in 1:40){
   }
 }
 
-#07.
-#(1)
-rowSums(iris[, -5])
-(2)
-for(c in 1:4){
-  cat(iris[which.max(iris[, c]),c], " ", sep = "")
-}
 
-#08.
-#(1)
-apply(X = mtcars, 2, sum)
-
-#(2)
-apply(X = mtcars, 2, max)
-
-#(3)
-apply(X = mtcars, 2, sd)
-
-#09.
+#09. 최대공약수
 lgm <- function(a, b){
   if(b > a){
     t <- a
@@ -109,7 +107,7 @@ result
 result <- lgm(10, 20)
 result
 
-#10.
+#10.최대 최소 반환
 maxmin <- function(v){
   rst <- list(max = 0, min = 0)
   if (length(v) == 0) {
@@ -135,25 +133,3 @@ result <- maxmin(v1)
 result$max ; result$min
 result <- maxmin(iris[, 1])
 result$max ; result$min
-
-#11.
-weight <- c(69, 50, 55, 71, 89, 64, 59, 70, 71, 80)
-#(1)
-which.max(weight)
-
-#(2)
-which.min(weight)
-
-#(3)
-which(weight >= 61 & weight <= 69)
-
-#(4)
-weight.2 <- weight[which(weight <= 60)]
-weight.2
-
-#12.
-#(1)
-iris[which.max(iris[, "Petal.Length"]), ]
-
-#(2)
-iris[which(iris[, "Petal.Width"] >= 0.3 & iris[, "Petal.Width"] <= 0.4),]

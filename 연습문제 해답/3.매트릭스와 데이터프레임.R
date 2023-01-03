@@ -44,46 +44,49 @@ mean(rowSums(st))
 colSums(st)
 mean(colSums(st))
 
-#(9)
+#(9)Florida주의 모든 정보 출력
 st["Florida", ]
 
-#(10)
+#(10) 50개 주의 수입 정보 출력
 st[, "Income"]
 
-#(11)
+#(11) Texas주의 면적을 출력
 st["Texas", "Area"]
 
-#(12)
+#(12)Ohio주의 인구와 수입을 출력
 st["Ohio", c("Population", "Income")]
 
-#(13)
+#(13) 인구가 5000이상인 주의 데이터만 출력
 st[st[,"Population"] > 5000,]
+subset(x=st, Population>=5000)
 
-#(14)
+#(14) 수입이 4500이상인 주의 인구, 수입, 면적을 출력
 st[st[,"Income"] > 4500, c("Population", "Income", "Area")]
+subset(x=st, Income>=4500, c("Population", "Income", "Area"))
 
-#(15)
+#(15) 수입이 4500이상인 주의 개수
 nrow(st[st[,"Income"] > 4500,])
+nrow(subset(x=st, Income>=4500))
 
-#(16)
+#(16) 전체면적이 100,000 이상이고 결빙일수가 120이상인 주
 st[st[, "Area"] > 100000 & st[, "Frost"] > 120,]
 subset(x = st, Area > 100000 & Frost > 120)
 
-#(17)
+#(17) 인구가 2,000미만이고 범죄율이 12미만인 주
 st[st[, "Population"] < 2000 & st[, "Murder"] < 12,]
 subset(x = st, Population < 2000, Murder < 12)
 
-#(18)
-mean(st[st[, "Illiteracy"] < 2.0, "Income"])
+#(18)문맹률이 2.0이상인 주의 평균수입
+mean(st[st[, "Illiteracy"] >= 2.0, "Income"])
 
-#(19)
+#(19)문맹률이 2.0미만인 주와 2.0이상인 주의 평균 수입의 차이
 mean(st[st[, "Illiteracy"] < 2.0, "Income"]) - mean(st[st[, "Illiteracy"] >= 2.0, "Income"])
 
-#(20)
+#(20)기대수명이 가장 높은 주
 rownames(st[st[,"Life.Exp"] == max(st[, "Life.Exp"]), ])
 rownames(subset(x = st, Life.Exp == max(st[, "Life.Exp"])))
 
-#(21)
+#(21) Pennsylvania주보다 수입이 높은 주
 rownames(st[st[,"Income"] > st["Pennsylvania", "Income"], ])
 rownames(subset(x = st, Income > st["Pennsylvania", "Income"]))
 
@@ -161,7 +164,7 @@ subset(x = swiss, Catholic > 80.0)[, "Agriculture"]
 subset(x = swiss, Examination < 20.0 & Agriculture < 50.0)[, c("Examination", "Agriculture")]
 
 #6
-#(1)
+#(1) 수입이 5000이상인 주의 데이터에서 수입,인구,면적 열의 값들만 추출하여 rich_state.csv에 저장
 write.csv(x = subset( x = data.frame(state.x77), Income > 5000 )[, c("Income", "Population", "Area")], file = "rich_state.csv", row.names = TRUE)
 #subset은 data.frame 형태의 값이 아니면 조건을 인지하지 못함
 
